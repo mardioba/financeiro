@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+{% for valor in total.fin_list %}
+<br>{{valor.tbl_data}}<br>{{valor.tbl_tipo}}<br>{{valor.tbl_movimentacao}}<br>
+{% endfor %}
+{{total.tbl_valor__sum | floatformat:2}}
+
+  
+{% endblock conteudo %}
+  

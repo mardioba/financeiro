@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block page_titulo %}
+  Movimentação
+{% endblock page_titulo %}
+
+{% block conteudo %}
+{% if total.tbl_valor__sum %}
+{% load static %}
+<div class="container">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col" style="text-align: center;">ID</th>
+      <th scope="col" style="text-align: center;">Descrição</th>
+      <th scope="col" style="text-align: center;">Data</th>
+      <th scope="col" style="text-align: center;">Tipo</th>
+      <th scope="col" style="text-align: center;">Valor</th>
+      <th scope="col" style="text-align: center;">Data Criado</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for lista in total.fin_list %}
+    <tr>
+      <td style="text-align: center;">{{ lista.id}}</td>
+      <td style="text-align: center;">{{lista.tbl_movimentacao}}</td>
+      <td style="text-align: center;">{{lista.tbl_data}}</td>
+      <td style="text-align: center;">{{lista.tbl_tipo}}</td>
+      <td style="text-align: center;">R$ {{lista.tbl_valor | floatformat:2}}</td>
+      <td style="text-align: center;">{{lista.tbl_data_at}}</td>
+      <td style="text-align: center;">
+        <a href="{% url 'movcad' %}" class="btn btn-sm" style="border-style: inherit;border-color: black;border-width:1pt;background-color: green;"><img src="{%static 'icones/crie_um_novo.png'%}" alt="" width="45%" height="45%"></a>
+        <a href="{%url 'fin_update' lista.id %}" class="btn btn-sm" style="border-style: inherit;border-color: black;border-width:1pt;background-color: lightblue;"><img src="{%static 'icones/atualizar.png'%}" alt="" width="45%" height="45%"></a> 
+          <a href="{%url 'fin_delete' lista.id %}" class="btn btn-sm" style="border-style: inherit;border-color: black;border-width:1pt; background-color: red;"><img src="{%static 'icones/remover.png'%}" alt="" width="45%" height="45%"></a>
+      </td>
+    </tr>
+    {% endfor %} 
+    <tr>
+      <th colspan="4" style="text-align: center; background-color: lightgray;">TOTAL (Entrada - Saída)</th>
+      <th style="text-align: center; background-color: lightgray;">R$ {{total.fin_total | floatformat:2}}</th>
+      <th style=" background-color: lightgray;"></th><th style=" background-color: lightgray;"></th>
+    </tr>
+  </tbody>
+</table>
+</div>
+{% else %}
+<h1>Nenhum Registro Encontado</h1>
+{% endif %}
+
+{% endblock conteudo %}
+    
+
+</body>
+</html>
+
+
+  

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+
+{% block page_titulo %}
+  Cadastro de MOV
+{% endblock page_titulo %}
+
+{% block conteudo %}
+<p><h1 style="text-align: center;">Cadastro de Movimentação</h1></p>
+<div style="margin: 0 auto;width: 50%;justify-content: center; display: flex;justify-content: center;" class="containe">
+
+  <form action="{% url 'movcad' %}" method="post">
+    
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Cadastrar</button>  <a href="{% url 'fin_list' %}" class="btn btn-sm btn-primary">Cancelar</a> <button type="reset">Limpar</button>
+  </form>
+</div>
+{% endblock conteudo %}
+{{mensagem}}
+  

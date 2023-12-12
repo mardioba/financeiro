@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+<div class="container" style="align-items: center;">
+<form method="post">
+  {% csrf_token %}
+  <p style="text-align: center;">Te certeza que deseja excluir a movimentação com<br>ID: <b>{{ db_financeiro.id }}</b><br><b>Descrição: {{db_financeiro.tbl_movimentacao}}</b> ?<br><br>
+  {{ form }}
+  <button type="submit" class="btn btn-sm btn-danger">Excluir</button>  <a class="btn btn-sm btn-primary" href={% url "fin_list" %}>Cancelar</a></p>
+</form></div>
+{% endblock conteudo %}
+  
