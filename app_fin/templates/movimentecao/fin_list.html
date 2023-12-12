@@ -23,13 +23,13 @@
     <tr>
       <td style="text-align: center;">{{ lista.id}}</td>
       <td style="text-align: center;">{{lista.tbl_movimentacao}}</td>
-      <td style="text-align: center;">{{lista.tbl_data}}</td>
+      <td style="text-align: center;">{{lista.tbl_data|date:"d/m/Y"}}</td>
       <td style="text-align: center;">{{lista.tbl_tipo}}</td>
       <td style="text-align: center;">R$ {{lista.tbl_valor | floatformat:2}}</td>
-      <td style="text-align: center;">{{lista.tbl_data_at}}</td>
-      <td style="align-items: center;"><a href="{% url 'movcad' %}" class="btn btn-sm" style="border-style: inherit;border-color: black;border-width:1pt;background-color: lawngreen;"><img src="{%static 'icones/crie_um_novo.png'%}" alt="" width="45%" height="45%"></a>
-        <a href="{%url 'fin_update' lista.id %}" class="btn btn-sm" style="border-style: inherit;border-color: black;border-width:1pt;background-color: blue;"><img src="{%static 'icones/atualizar.png'%}" alt="" width="45%" height="45%"></a> 
-          <a href="{%url 'fin_delete' lista.id %}" class="btn btn-sm" style="border-style: inherit;border-color: black;border-width:1pt; background-color: #f90808;"><img src="{%static 'icones/remover.png'%}" alt="" width="45%" height="45%"></a>
+      <td style="text-align: center;">{{lista.tbl_data_at|date:"d/m/Y H:i:s"}}</td>
+      <td style="align-items: center;"><a href="{% url 'movcad' %}" class="btn btn-sm" style="border-style: inherit;border-color: black;border-width:1pt;background-color: lawngreen;"><img class="img-fluid" src="{%static 'icones/crie_um_novo.png'%}" alt="" width="45%" height="45%"></a>
+        <a href="{%url 'fin_update' lista.id %}" class="btn btn-sm" style="border-style: inherit;border-color: black;border-width:1pt;background-color: blue;"><img class="img-fluid" src="{%static 'icones/atualizar.png'%}" alt="" width="45%" height="45%"></a> 
+          <a href="{%url 'fin_delete' lista.id %}" class="btn btn-sm" style="border-style: inherit;border-color: black;border-width:1pt; background-color: #f90808;"><img class="img-fluid" src="{%static 'icones/remover.png'%}" alt="" width="45%" height="45%"></a>
         </td>
     </tr>
       {% endfor %} 

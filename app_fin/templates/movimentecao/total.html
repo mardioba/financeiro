@@ -29,9 +29,9 @@
       <td style="text-align: center;">R$ {{lista.tbl_valor | floatformat:2}}</td>
       <td style="text-align: center;">{{lista.tbl_data_at}}</td>
       <td style="text-align: center;">
-        <a href="{% url 'movcad' %}" class="btn btn-sm" style="border-style: inherit;border-color: black;border-width:1pt;background-color: green;"><img src="{%static 'icones/crie_um_novo.png'%}" alt="" width="45%" height="45%"></a>
-        <a href="{%url 'fin_update' lista.id %}" class="btn btn-sm" style="border-style: inherit;border-color: black;border-width:1pt;background-color: lightblue;"><img src="{%static 'icones/atualizar.png'%}" alt="" width="45%" height="45%"></a> 
-          <a href="{%url 'fin_delete' lista.id %}" class="btn btn-sm" style="border-style: inherit;border-color: black;border-width:1pt; background-color: red;"><img src="{%static 'icones/remover.png'%}" alt="" width="45%" height="45%"></a>
+        <a href="{% url 'movcad' %}" class="btn btn-sm" style="border-style: inherit;border-color: black;border-width:1pt;background-color: green;"><img class="img-fluid" src="{%static 'icones/crie_um_novo.png'%}" alt="" width="45%" height="45%"></a>
+        <a href="{%url 'fin_update' lista.id %}" class="btn btn-sm" style="border-style: inherit;border-color: black;border-width:1pt;background-color: lightblue;"><img class="img-fluid" src="{%static 'icones/atualizar.png'%}" alt="" width="45%" height="45%"></a> 
+          <a href="{%url 'fin_delete' lista.id %}" class="btn btn-sm" style="border-style: inherit;border-color: black;border-width:1pt; background-color: red;"><img class="img-fluid" src="{%static 'icones/remover.png'%}" alt="" width="45%" height="45%"></a>
       </td>
     </tr>
     {% endfor %} 
