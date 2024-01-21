@@ -1,36 +1,67 @@
 <!-- templates/financas/relatorio.html -->
 {% extends 'base.html' %}
 {% load static %}
+{% load l10n %}
 
     {% block page_title %}
     Relatório de Despesas e Receitas/Mes Atual
     {% endblock page_title %}
 
 {% block content %}
+<div class="container-sm" style="text-align: center;">
+    <div class="table-responsive  mx-auto">
+    <h2 style="text-align: center;">Despesas e Receitas do Mês Atual</h2><br>
     
-
-<h2>Relatório de Despesas e Receitas</h2>
-
-<h3><img src="{% static 'img/despesas-64.png' %}" alt="" style="width: 32px;height: 32px;"> Despesas do Mês</h3>
-<ul>
-    {% for despesa in despesas_mes %}
-    <li>{{ despesa.descricao }} - R$ {{ despesa.valor }} - {{ despesa.data }}</li>
-    {% endfor %}
+    <h3> </h3>
+    <ul>
+        <table class="table">
+        <thead>
+            
+            <tr><td colspan="3" style="font-size: 16px;background: #DCDCDC;"><img src="{% static 'img/despesas-64.png' %}" alt="" style="width: 32px;height: 32px;"> <b>Despesas do Mês</b></td></tr>
+            <tr>
+                <th scope="col">Descrição</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Data</th>
+            </tr>
+        </thead>
+        
+        {% for despesa in despesas_mes %}
+        <!--<li>{{ despesa.descricao }} - R$ {{ despesa.valor }} - {{ despesa.data }}</li> -->
+        <tr><td>{{ despesa.descricao }}</td><td>{{ despesa.valor }}</td><td>{{ despesa.data }}</td></tr>
+        {% endfor %}
+    </table>
 </ul>
 
-<h3><img src="{% static 'img/receitas-64.png' %}" alt="" style="width: 32px;height: 32px;"> Receitas do Mês</h3>
 <ul>
-    {% for receita in receitas_mes %}
-    <li>{{ receita.descricao }} - R$ {{ receita.valor }} - {{ receita.data }}</li>
-    {% endfor %}
-</ul>
-
-<h3><img src="{% static 'img/resumo-64.png' %}" alt="" style="width: 32px;height: 32px;"> Resumo do Mês</h3>
-<p>Total de Despesas: R$ {{ total_despesas }}</p>
-<p>Total de Receitas: R$ {{ total_receitas }}</p>
-<p>Saldo do Mês: R$ {{ saldo_mes }}</p>
-
-<a href="{% url 'listar_despesas' %}">Voltar para Lista de Despesas</a>
-<a href="{% url 'listar_receitas' %}">Voltar para Lista de Receitas</a>
+    <table class="table">
+        <thead>
+            
+            <tr><td colspan="3" style="font-size: 16px;;background: #DCDCDC;"><img src="{% static 'img/receitas-64.png' %}" alt="" style="width: 32px;height: 32px;"> <b>Receitas do Mês</b></td></tr>
+            <tr>
+                <th scope="col">Descrição</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Data</th>
+            </tr>
+        </thead>
+        {% for receita in receitas_mes %}
+        <!-- <li>{{ receita.descricao }} - R$ {{ receita.valor }} - {{ receita.data }}</li> -->
+        <tr><td>{{ receita.descricao }}</td><td>{{ receita.valor }}</td><td>{{ receita.data }}</td></tr>
+        
+        {% endfor %}
+    </table>
+    
+    <table class="table">
+        <thead>
+        
+        <tr><td colspan="3" style="font-size: 16px;;background: #DCDCDC;"><img src="{% static 'img/resumo-64.png' %}" alt="" style="width: 32px;height: 32px;"> <b>Resumo do Mês</b></td></tr>
+      <tr>
+    </thead>
+    <tr><td style="text-align: left;">Total de Despesas: <b>R$ {{ total_despesas|floatformat:2|localize  }}</b></td></tr>
+    <tr><td style="text-align: left;">Total de Receitas: <b>R$ {{ total_receitas|floatformat:2|localize  }}</b></td></tr>
+    <tr><td style="text-align: left;">Saldo do Mês: <b>R$ {{ saldo_mes|floatformat:2|localize  }}</b></td></tr>
+    <tr><td><a href="{% url 'listar_despesas' %}">Voltar para Lista de Despesas</a> <a href="{% url 'listar_receitas' %}">Voltar para Lista de Receitas</a></td></tr>
+    <tr><td></td></tr>
+</table></div>
+</div>
 {% endblock content %}
 
