@@ -1,0 +1,22 @@
+<!-- templates/financas/listar_despesas.html -->
+{% extends 'base.html' %}
+{% load static %}
+{% block page_title %}
+Listar Despesas
+    
+{% endblock page_title %}
+    
+{% block content %}
+<div class="pai">
+    <div class="filho">
+
+        <img src="{% static 'img/despesas-64.png' %}" alt=""> <h2>Despesas</h2>
+        <ul>
+            {% for despesa in despesas %}
+            <li>{{ despesa.descricao }} - R$ {{ despesa.valor }} - {{ despesa.data }}</li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'adicionar_despesa' %}">Adicionar Despesa</a>
+    </div>
+</div>
+{% endblock content %}

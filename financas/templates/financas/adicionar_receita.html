@@ -1,0 +1,27 @@
+<!-- templates/financas/adicionar_receita.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_title %}
+    
+Adicionar Receita
+{% endblock page_title %}
+    
+
+{% block content %}
+<div class="pai">
+    <div class="filho">
+
+        
+        <img src="{% static 'img/receitas-64.png' %}" alt=""><h2>Adicionar Receita</h2><br>
+        <form method="post" action="{% url 'adicionar_receita' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit"><img src="{% static 'img/salvar-64.png' %}" alt="" style="width: 32px;height: 32px;">Salvar</button>
+        </form>
+        <br>
+        <a href="{% url 'listar_receitas' %}">Voltar para Lista de Receitas</a>
+    </div>
+</div>
+{% endblock content %}
+

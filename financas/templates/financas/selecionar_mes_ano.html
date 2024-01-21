@@ -1,0 +1,31 @@
+<!-- templates/financas/selecionar_mes_ano.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Selecionar Mês e Ano</title>
+</head>
+<body>
+    <h2>Selecionar Mês e Ano</h2>
+
+    <form method="get" action="{% url 'relatorio' ano=selected_year mes=selected_month %}">
+        <label for="ano">Ano:</label>
+        <select name="ano" id="ano">
+            {% for year in anos %}
+                <option value="{{ year }}" {% if year == selected_year %}selected{% endif %}>{{ year }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="mes">Mês:</label>
+        <select name="mes" id="mes">
+            {% for month in meses %}
+                <option value="{{ month.0 }}" {% if month.0 == selected_month %}selected{% endif %}>{{ month.1 }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Gerar Relatório</button>
+    </form>
+
+    <a href="{% url 'listar_despesas' %}">Voltar para Lista de Despesas</a>
+    <a href="{% url 'listar_receitas' %}">Voltar para Lista de Receitas</a>
+</body>
+</html>

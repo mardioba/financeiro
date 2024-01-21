@@ -1,0 +1,23 @@
+<!-- templates/financas/adicionar_despesa.html -->
+{% extends 'base.html' %}
+{% load static %}
+    {% block pqge_title %}
+    Adicionar Despesa
+    {% endblock pqge_title %}
+{% block content %}
+    
+<div class="pai">
+    <div class="filho">
+
+        <h2><img src="{% static 'img/despesas-64.png' %}" alt=""> Adicionar Despesa</h2>
+        <form method="post" action="{% url 'adicionar_despesa' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit"><img src="{% static 'img/salvar-64.png' %}" alt="" style="width: 32px;height: 32px;">Salvar</button>
+        </form>
+        <br>
+        <a href="{% url 'listar_despesas' %}">Voltar para Lista de Despesas</a>
+    </div>
+    </div>
+{% endblock content %}
+

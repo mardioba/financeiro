@@ -1,0 +1,24 @@
+<!-- templates/financas/relatorio.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+    {% block page_title %}
+    Relatório de Despesas e Receitas/Mes Atual
+    {% endblock page_title %}
+
+{% block content %}
+    
+
+<h2>Relatório de Despesas e Receitas</h2>
+
+<h3><img src="{% static 'img/receitas-64.png' %}" alt="" style="width: 32px;height: 32px;"> Receitas do Mês de {{nome_mes}}/{{ano}}</h3>
+<ul>
+    {% for receita in receitas_mes %}
+    <li>{{ receita.descricao }} - R$ {{ receita.valor }} - {{ receita.data }}</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'listar_despesas' %}">Voltar para Lista de Despesas</a>
+<a href="{% url 'listar_receitas' %}">Voltar para Lista de Receitas</a>
+{% endblock content %}
+

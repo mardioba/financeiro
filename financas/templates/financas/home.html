@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+<style>
+  .pai {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .filho {
+    width: 50%%;
+  }
+</style>
+
+{% block page_title %}
+  ..:: Money Finance ::..
+{% endblock page_title %}
+  
+{% block content %}
+<div class="pai" style="align-items: center; display: flex; flex-direction: row; justify-content: center;flex-wrap: wrap;">
+  <div class="filho">
+<img src="{% static 'img/logo.png' %}" alt="">
+  </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,22 @@
+<!-- templates/financas/listar_receitas.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_title %}
+Listar Receitas    
+{% endblock page_title %}
+
+{% block content %}
+<div class="pai">
+    <div class="filho">
+        <h2><img src="{% static 'img/receitas-64.png' %}" alt=""><p>Receitas</p></h2>
+        <ul>
+            {% for receita in receitas %}
+            <li>{{ receita.descricao }} - R$ {{ receita.valor }} - {{ receita.data }}</li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'adicionar_receita' %}">Adicionar Receita</a>
+    </div>
+    </div>
+{% endblock content %}
+
