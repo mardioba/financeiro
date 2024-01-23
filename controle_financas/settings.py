@@ -76,23 +76,23 @@ WSGI_APPLICATION = "controle_financas.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
-# Configuração Maria DB
 # DATABASES = {
 #     "default": {
-#         "ENGINE": "django.db.backends.mysql",
-#         "NAME": "financeiro",
-#         "USER": "root",
-#         "PASSWORD": "1978",
-#         "HOST": "localhost",  # ou o endereço do seu servidor MariaDB
-#         "PORT": "3306",  # ou a porta que você está usando para o MariaDB
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
 #     }
 # }
+# Configuração Maria DB
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "financeiro",
+        "USER": "root",
+        "PASSWORD": "1978",
+        "HOST": "localhost",  # ou o endereço do seu servidor MariaDB
+        "PORT": "3306",  # ou a porta que você está usando para o MariaDB
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -118,7 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "pt-br"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "America/Bahia"
 
 USE_I18N = True
 

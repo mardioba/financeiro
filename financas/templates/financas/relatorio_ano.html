@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load l10n %}
+
 <head>
     
     {% block page_title %}
@@ -30,12 +31,12 @@
         {% endfor %}
         
         {% if saldo_anual > 0 %}
-        <tr style="background: #00FF00;"><td>Saldo Anual:</td>
-        <td style="font-weight: bold;color: white; text-align: right;">R$ {{ saldo_anual|floatformat:2|localize }}</td>
+        <tr style="background: #8bebcf;"><td>Saldo Anual:</td>
+        <td style="font-weight: bold;text-align: right;">R$ {{ saldo_anual|floatformat:2|localize }}</td>
         </tr>
         {% else %}
-        <tr style="background: red;"><td>Saldo Anual:</td>
-            <td style="font-weight: bold;color: white; text-align: right;">R$ {{ saldo_anual|floatformat:2|localize }}</td>
+        <tr style="background: #f8d7da;"><td>Saldo Anual:</td>
+            <td style="font-weight: bold;text-align: right;">R$ {{ saldo_anual|floatformat:2|localize }}</td>
             </tr>
         {% endif %}
             

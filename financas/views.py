@@ -1,4 +1,5 @@
 # financas/views.py
+from django.utils import translation
 from django.shortcuts import render, redirect
 from .models import Despesa, Receita
 from .forms import DespesaForm, ReceitaForm
@@ -123,6 +124,7 @@ def selecionar_mes_ano(request):
 
 
 def selecionar_ano(request):
+    translation.activate("pt_BR")
     anos = range(datetime.now().year, 2000, -1)
     locale.setlocale(locale.LC_TIME, "pt_BR.UTF-8")
     selected_year = request.GET.get("ano", datetime.now().year)
