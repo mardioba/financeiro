@@ -1,0 +1,15 @@
+<!-- financas/templates/financas/excluir_despesa.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="table-responsive">
+  <h2>Excluir Despesa</h2>
+  <p>Tem certeza de que deseja excluir a despesa "{{ despesa.descricao }}"?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirmar Exclusão</button>
+  </form>
+  <a href="{% url 'todas_despesas' %}">Cancelar</a>
+</div></div>
+{% endblock %}

@@ -12,6 +12,12 @@ from .views import (
     pesquisa_receitas,
     relatorio_ano,
     selecionar_ano,
+    editar_despesa,
+    editar_receita,
+    todas_despesas,
+    todas_receitas,
+    excluir_despesa,
+    excluir_receita,
 )
 
 urlpatterns = [
@@ -32,4 +38,10 @@ urlpatterns = [
     ),  # Adicione esta linha
     path("relatorio_ano/<int:ano>/", relatorio_ano, name="relatorio_ano"),
     path("selecionar_ano/", selecionar_ano, name="selecionar_ano"),
+    path("editar_receita/<int:receita_id>/", editar_receita, name="editar_receita"),
+    path("editar_despesa/<int:despesa_id>/", editar_despesa, name="editar_despesa"),
+    path("todas_despesas/", todas_despesas, name="todas_despesas"),
+    path("todas_receitas/", todas_receitas, name="todas_receitas"),
+    path("excluir_receita/<int:receita_id>/", excluir_receita, name="excluir_receita"),
+    path("excluir_despesa/<int:despesa_id>/", excluir_despesa, name="excluir_despesa"),
 ]

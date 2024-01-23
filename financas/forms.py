@@ -21,3 +21,4 @@ class ReceitaForm(forms.ModelForm):
             # "data": forms.DateInput(attrs={"type": "date"}),
             "data": forms.TextInput(attrs={"type": "date"}),
         }
+

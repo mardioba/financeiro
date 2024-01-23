@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block page_title %}Lista Depesas{% endblock page_title %}
+
+{% block content %}
+
+{% if not despesas %}
+<h1 style="text-align: center;">Nenhuma Despesa Encontrada</h1>
+{% else %}
+<div class="container">
+  <div class="table-responsive">
+<table class="table table-bordered" style="text-align: center;">
+  <tr style="text-align: center; background: #C0C0C0;font-weight: bold;">
+    <td>Descricao</td><td>Valor</td><td>Data</td><td>Ação</td>
+  </tr>
+  {% for despesa in despesas %}
+  {% if forloop.counter0|divisibleby:2 %}
+    <tr style="background-color: #f0f0f0;"><td>{{despesa.descricao}}</td><td>{{despesa.valor}}</td><td>{{despesa.data}}</td><td><a href="{% url 'editar_despesa' despesa.id %}" class="btn btn-info">Editar</a> <a href="{% url 'excluir_despesa' despesa.id %}" class="btn btn-danger">Excluir</a></td></tr>
+{% else %}
+    <tr style="background-color: #ffffff;"><td>{{despesa.descricao}}</td><td>{{despesa.valor}}</td><td>{{despesa.data}}</td><td><a href="{% url 'editar_despesa' despesa.id %}" class="btn btn-info">Editar</a> <a href="{% url 'excluir_despesa' despesa.id %}" class="btn btn-danger">Excluir</a></td></tr>
+{% endif %}
+  {% endfor %}
+</table>
+{% endif %}
+  </div></div>
+{% endblock content %}
+  

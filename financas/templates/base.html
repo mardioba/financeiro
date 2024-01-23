@@ -45,7 +45,7 @@
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Listar
+                Pesquisar
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <li><a class="dropdown-item" href="{% url 'listar_despesas' %}">Despesas</a></li>
@@ -60,6 +60,16 @@
                 <li><a class="dropdown-item" href="{% url 'adicionar_receita' %}">Add Receitas</a></li>
               </ul>
             </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Manutenção
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="{% url 'todas_despesas' %}">Editar/Excluir Despesas</a></li>
+                <li><a class="dropdown-item" href="{% url 'todas_receitas' %}">Editar/Excluir Receitas</a></li>
+              </ul>
+            </li>
+            <!--RElatorio depois daqui-->
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Relatorio

@@ -1,0 +1,15 @@
+<!-- financas/templates/financas/excluir_receita.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="table-responsive">
+  <h2>Excluir Receita</h2>
+  <p>Tem certeza de que deseja excluir a receita "{{ receita.descricao }}"?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirmar Exclusão</button>
+  </form>
+  <a href="{% url 'todas_receitas' %}">Cancelar</a>
+</div></div>
+{% endblock %}

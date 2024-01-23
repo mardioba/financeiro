@@ -1,6 +1,6 @@
 # financas/views.py
 from django.utils import translation
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Despesa, Receita
 from .forms import DespesaForm, ReceitaForm
 from django.views.generic import View
@@ -277,3 +277,63 @@ class FaviconView(View):
     def get(self, request, *args, **kwargs):
         # Pode ser necessário ajustar o caminho para o seu favicon
         return redirect("/static/favicon.ico")
+
+
+######## EDITAR REGISTROS ###################################################
+def editar_receita(request, receita_id):
+    receita = get_object_or_404(Receita, id=receita_id)
+    if request.method == "POST":
+        form = ReceitaForm(request.POST, instance=receita)
+        if form.is_valid():
+            form.save()
+            return redirect("todas_receitas")
+    else:
+        form = ReceitaForm(instance=receita)
+
+    return render(
+        request, "financas/editar_receita.html", {"form": form, "receita": receita}
+    )
+
+
+def editar_despesa(request, despesa_id):
+    despesa = get_object_or_404(Despesa, id=despesa_id)
+    if request.method == "POST":
+        form = DespesaForm(request.POST, instance=despesa)
+        if form.is_valid():
+            form.save()
+            return redirect("todas_despesas")
+    else:
+        form = DespesaForm(instance=despesa)
+
+    return render(
+        request, "financas/editar_despesa.html", {"form": form, "despesa": despesa}
+    )
+
+
+def todas_despesas(request):
+    todas_despesas = Despesa.objects.all()
+    return render(request, "financas/todas_despesas.html", {"despesas": todas_despesas})
+
+
+def todas_receitas(request):
+    todas_receitas = Receita.objects.all()
+    return render(request, "financas/todas_receitas.html", {"receitas": todas_receitas})
+
+
+###### EXCLUIR REGISTROS ##################################################
+def excluir_receita(request, receita_id):
+    receita = get_object_or_404(Receita, id=receita_id)
+    if request.method == "POST":
+        receita.delete()
+        return redirect("todas_receitas")
+
+    return render(request, "financas/excluir_receita.html", {"receita": receita})
+
+
+def excluir_despesa(request, despesa_id):
+    despesa = get_object_or_404(Despesa, id=despesa_id)
+    if request.method == "POST":
+        despesa.delete()
+        return redirect("todas_despesas")
+
+    return render(request, "financas/excluir_despesa.html", {"despesa": despesa})
