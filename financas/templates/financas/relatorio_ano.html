@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load l10n %}
+<head>
+    
+    {% block page_title %}
+        
+    Relatório Anual BASE
+    {% endblock page_title %}
+</head>
+<body>
+    
+    {% block content %}
+    <div class="container">
+        <div class="table-responsive">
+
+        <table class="table" align="center">
+        <tr style="background-color: #C0C0C0;font-size: 20px;font-weight: bold;text-align: center;"><td colspan="2">Relatório Anual <br>( {{ ano }} )</td></tr>
+        {% for relatorio_mes in relatorio_anual %}
+
+        <tr style="background: #DCDCDC;font-size: 14px;text-align: center;"><td colspan="2">Mês: <b>{{ relatorio_mes.nome_mes|upper }}</b></td></tr>
+        <tr><td>Receitas:</td>
+        <td style="text-align: right;">R$ {{ relatorio_mes.receitas_mes|floatformat:2|localize }}</td></tr>
+        <tr><td>Despesas:</td>
+        <td style="text-align: right;">R$ {{ relatorio_mes.despesas_mes|floatformat:2|localize }}</td>
+        </tr>
+        <tr><td>Saldo:</td>
+        <td style="text-align: right;">R$ {{ relatorio_mes.saldo_mes|floatformat:2|localize }}</td>
+        </tr>
+
+        {% endfor %}
+        
+        {% if saldo_anual > 0 %}
+        <tr style="background: #00FF00;"><td>Saldo Anual:</td>
+        <td style="font-weight: bold;color: white; text-align: right;">R$ {{ saldo_anual|floatformat:2|localize }}</td>
+        </tr>
+        {% else %}
+        <tr style="background: red;"><td>Saldo Anual:</td>
+            <td style="font-weight: bold;color: white; text-align: right;">R$ {{ saldo_anual|floatformat:2|localize }}</td>
+            </tr>
+        {% endif %}
+            
+    </table>
+</div>
+</div>
+    {% endblock content %}

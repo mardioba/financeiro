@@ -10,6 +10,8 @@ from .views import (
     despesas_mes_ano,
     pesquisa_despesas,
     pesquisa_receitas,
+    relatorio_ano,
+    selecionar_ano,
 )
 
 urlpatterns = [
@@ -28,4 +30,6 @@ urlpatterns = [
     path(
         "p_receitas/<int:ano>/<int:mes>/", pesquisa_receitas, name="pesquisa_receitas"
     ),  # Adicione esta linha
+    path("relatorio_ano/<int:ano>/", relatorio_ano, name="relatorio_ano"),
+    path("selecionar_ano/", selecionar_ano, name="selecionar_ano"),
 ]

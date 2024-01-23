@@ -17,8 +17,8 @@
     <li>{{ receita.descricao }} - R$ {{ receita.valor }} - {{ receita.data }}</li>
     {% endfor %}
 </ul>
-
 <a href="{% url 'listar_despesas' %}">Voltar para Lista de Despesas</a>
-<a href="{% url 'listar_receitas' %}">Voltar para Lista de Receitas</a>
+<a href="{% url 'listar_receitas' %}">Voltar para Lista de Receitas</a><br>
+ <a class="btn btn-primary" href="{% url 'gerar_pdf' ano=ano mes=nmes %}" target="_blank">Gerar PDF - {{ano}}</a>
 {% endblock content %}
 

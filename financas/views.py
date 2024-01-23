@@ -2,6 +2,7 @@
 from django.shortcuts import render, redirect
 from .models import Despesa, Receita
 from .forms import DespesaForm, ReceitaForm
+from django.views.generic import View
 from django.db.models import Sum
 from datetime import datetime, date
 import locale
@@ -117,6 +118,21 @@ def selecionar_mes_ano(request):
     )
 
 
+def selecionar_ano(request):
+    anos = range(datetime.now().year, 2000, -1)
+    locale.setlocale(locale.LC_TIME, "pt_BR.UTF-8")
+    selected_year = request.GET.get("ano", datetime.now().year)
+
+    return render(
+        request,
+        "financas/selecionar_ano.html",
+        {
+            "anos": anos,
+            "selected_year": selected_year,
+        },
+    )
+
+
 def despesas_mes_ano(request):
     anos = range(datetime.now().year, 2000, -1)
     meses = [
@@ -170,7 +186,8 @@ def pesquisa_despesas(request, ano, mes):
     despesas_mes = Despesa.objects.filter(
         data__range=[primeiro_dia_do_mes, ultimo_dia_do_mes]
     )
-
+    locale.setlocale(locale.LC_TIME, "pt_BR.utf-8")
+    nome_mes = calendar.month_name[int(mes)]
     return render(
         request,
         "financas/despesas_mes_RESULT.html",
@@ -199,5 +216,56 @@ def pesquisa_receitas(request, ano, mes):
             "receitas_mes": receitas_mes,
             "nome_mes": nome_mes,
             "ano": ano,
+            "nmes": mes,
         },
     )
+
+
+# Aqui
+def relatorio_ano(request, ano):
+    relatorio_anual = []
+
+    for mes in range(1, 13):
+        primeiro_dia_do_mes = date(int(ano), mes, 1)
+        ultimo_dia_do_mes = primeiro_dia_do_mes.replace(day=28)
+
+        receitas_mes = (
+            Receita.objects.filter(
+                data__range=[primeiro_dia_do_mes, ultimo_dia_do_mes]
+            ).aggregate(total_receitas_mes=Sum("valor"))["total_receitas_mes"]
+            or 0
+        )
+
+        despesas_mes = (
+            Despesa.objects.filter(
+                data__range=[primeiro_dia_do_mes, ultimo_dia_do_mes]
+            ).aggregate(total_despesas_mes=Sum("valor"))["total_despesas_mes"]
+            or 0
+        )
+
+        saldo_mes = receitas_mes - despesas_mes
+
+        nome_mes = calendar.month_name[mes]
+
+        relatorio_mes = {
+            "nome_mes": nome_mes,
+            "ano": ano,
+            "nmes": mes,
+            "receitas_mes": receitas_mes,
+            "despesas_mes": despesas_mes,
+            "saldo_mes": saldo_mes,
+        }
+
+        relatorio_anual.append(relatorio_mes)
+
+    saldo_anual = sum(relatorio["saldo_mes"] for relatorio in relatorio_anual)
+
+    return render(
+        request,
+        "financas/relatorio_ano.html",
+        {"relatorio_anual": relatorio_anual, "ano": ano, "saldo_anual": saldo_anual},
+    )
+class FaviconView(View):
+    def get(self, request, *args, **kwargs):
+        # Pode ser necessário ajustar o caminho para o seu favicon
+        return redirect('/static/favicon.ico')

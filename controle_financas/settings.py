@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-rtc4r$35xpu)1q=l$jd)u7tie(5p5a__ixd#_y9m+@3-mgr5iy
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -82,7 +82,17 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
-
+# Configuração Maria DB
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.mysql",
+#         "NAME": "financeiro",
+#         "USER": "root",
+#         "PASSWORD": "1978",
+#         "HOST": "localhost",  # ou o endereço do seu servidor MariaDB
+#         "PORT": "3306",  # ou a porta que você está usando para o MariaDB
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
