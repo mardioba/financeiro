@@ -73,7 +73,8 @@ def relatorio(request, ano, mes):
     receitas_mes = Receita.objects.filter(
         data__range=[primeiro_dia_do_mes, ultimo_dia_do_mes]
     )
-
+    locale.setlocale(locale.LC_TIME, "pt_BR.UTF-8")
+    nome_mes = calendar.month_name[int(mes)]
     total_despesas = despesas_mes.aggregate(Sum("valor"))["valor__sum"] or 0
     total_receitas = receitas_mes.aggregate(Sum("valor"))["valor__sum"] or 0
 
@@ -88,6 +89,7 @@ def relatorio(request, ano, mes):
             "total_despesas": total_despesas,
             "total_receitas": total_receitas,
             "saldo_mes": saldo_mes,
+            "nmes": nome_mes,
         },
     )
 
@@ -265,7 +267,9 @@ def relatorio_ano(request, ano):
         "financas/relatorio_ano.html",
         {"relatorio_anual": relatorio_anual, "ano": ano, "saldo_anual": saldo_anual},
     )
+
+
 class FaviconView(View):
     def get(self, request, *args, **kwargs):
         # Pode ser necessário ajustar o caminho para o seu favicon
-        return redirect('/static/favicon.ico')
+        return redirect("/static/favicon.ico")
