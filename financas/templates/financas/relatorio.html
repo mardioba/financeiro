@@ -17,7 +17,7 @@
         <table class="table">
         <thead>
             
-            <tr><td colspan="3" style="font-size: 16px;background: #DCDCDC;"><img src="{% static 'img/despesas-64.png' %}" alt="" style="width: 32px;height: 32px;"> <b>Despesas do Mês</b></td></tr>
+            <tr><td colspan="3" style="font-size: 16px;background: #cff4fc;"><img src="{% static 'img/despesas-64.png' %}" alt="" style="width: 32px;height: 32px;"> <b>Despesas do Mês</b></td></tr>
             <tr>
                 <th scope="col">Descrição</th>
                 <th scope="col">Valor</th>
@@ -26,8 +26,11 @@
         </thead>
         
         {% for despesa in despesas_mes %}
-        <!--<li>{{ despesa.descricao }} - R$ {{ despesa.valor }} - {{ despesa.data }}</li> -->
-        <tr><td>{{ despesa.descricao }}</td><td>{{ despesa.valor }}</td><td>{{ despesa.data }}</td></tr>
+        {% if forloop.counter0|divisibleby:2 %}
+        <tr style="background-color: #e2e3e5;"><td>{{ despesa.descricao }}</td><td>{{ despesa.valor }}</td><td>{{ despesa.data }}</td></tr>
+      {% else %}
+        <tr style="background-color: #fff3cd;"><td>{{ despesa.descricao }}</td><td>{{ despesa.valor }}</td><td>{{ despesa.data }}</td></tr>
+      {% endif %}
         {% endfor %}
     </table>
 </ul>
@@ -36,7 +39,7 @@
     <table class="table">
         <thead>
             
-            <tr><td colspan="3" style="font-size: 16px;;background: #DCDCDC;"><img src="{% static 'img/receitas-64.png' %}" alt="" style="width: 32px;height: 32px;"> <b>Receitas do Mês</b></td></tr>
+            <tr><td colspan="3" style="font-size: 16px;;background: #cff4fc;"><img src="{% static 'img/receitas-64.png' %}" alt="" style="width: 32px;height: 32px;"> <b>Receitas do Mês</b></td></tr>
             <tr>
                 <th scope="col">Descrição</th>
                 <th scope="col">Valor</th>
@@ -44,8 +47,11 @@
             </tr>
         </thead>
         {% for receita in receitas_mes %}
-        <!-- <li>{{ receita.descricao }} - R$ {{ receita.valor }} - {{ receita.data }}</li> -->
-        <tr><td>{{ receita.descricao }}</td><td>{{ receita.valor }}</td><td>{{ receita.data }}</td></tr>
+        {% if forloop.counter0|divisibleby:2 %}
+        <tr style="background-color: #e2e3e5;"><td>{{ receita.descricao }}</td><td>{{ receita.valor }}</td><td>{{ receita.data }}</td></tr>
+      {% else %}
+        <tr style="background-color: #fff3cd;"><td>{{ receita.descricao }}</td><td>{{ receita.valor }}</td><td>{{ receita.data }}</td></tr>
+      {% endif %}
         
         {% endfor %}
     </table>
@@ -53,12 +59,12 @@
     <table class="table">
         <thead>
         
-        <tr><td colspan="3" style="font-size: 16px;;background: #DCDCDC;"><img src="{% static 'img/resumo-64.png' %}" alt="" style="width: 32px;height: 32px;"> <b>Resumo do Mês</b></td></tr>
+        <tr><td colspan="3" style="font-size: 16px;;background: #cff4fc;"><img src="{% static 'img/resumo-64.png' %}" alt="" style="width: 32px;height: 32px;"> <b>Resumo do Mês</b></td></tr>
       <tr>
     </thead>
-    <tr><td style="text-align: left;">Total de Despesas: <b>R$ {{ total_despesas|floatformat:2|localize  }}</b></td></tr>
-    <tr><td style="text-align: left;">Total de Receitas: <b>R$ {{ total_receitas|floatformat:2|localize  }}</b></td></tr>
-    <tr><td style="text-align: left;">Saldo do Mês: <b>R$ {{ saldo_mes|floatformat:2|localize  }}</b></td></tr>
+    <tr><td style="text-align: left;background-color: #e2e3e5;">Total de Despesas: <b>R$ {{ total_despesas|floatformat:2|localize  }}</b></td></tr>
+    <tr><td style="text-align: left;background-color: #fff3cd;">Total de Receitas: <b>R$ {{ total_receitas|floatformat:2|localize  }}</b></td></tr>
+    <tr><td style="text-align: left;background-color: #e2e3e5;">Saldo do Mês: <b>R$ {{ saldo_mes|floatformat:2|localize  }}</b></td></tr>
     <tr><td><a href="{% url 'listar_despesas' %}">Voltar para Lista de Despesas</a> <a href="{% url 'listar_receitas' %}">Voltar para Lista de Receitas</a></td></tr>
     <tr><td></td></tr>
 </table></div>
