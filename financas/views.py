@@ -35,14 +35,15 @@ def relatorio_atual(request):
     hoje = date.today()
     primeiro_dia_do_mes = hoje.replace(day=1)
     ultimo_dia_do_mes = hoje.replace(day=28)  # Adapte conforme necessário
-
+    mes = hoje.month
     despesas_mes = Despesa.objects.filter(
         data__range=[primeiro_dia_do_mes, ultimo_dia_do_mes]
     )
     receitas_mes = Receita.objects.filter(
         data__range=[primeiro_dia_do_mes, ultimo_dia_do_mes]
     )
-
+    locale.setlocale(locale.LC_TIME, "pt_BR.UTF-8")
+    nome_mes = calendar.month_name[int(mes)]
     total_despesas = despesas_mes.aggregate(Sum("valor"))["valor__sum"] or 0
     total_receitas = receitas_mes.aggregate(Sum("valor"))["valor__sum"] or 0
 
@@ -57,6 +58,7 @@ def relatorio_atual(request):
             "total_despesas": total_despesas,
             "total_receitas": total_receitas,
             "saldo_mes": saldo_mes,
+            "nmes": nome_mes,
         },
     )
 
