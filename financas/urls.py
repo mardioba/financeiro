@@ -17,7 +17,7 @@ from .views import (
     todas_despesas,
     todas_receitas,
     excluir_despesa,
-    excluir_receita,
+    excluir_receita, ChangePasswordView, PasswordChangeDoneView, SignupView, profile
 )
 
 urlpatterns = [
@@ -44,4 +44,9 @@ urlpatterns = [
     path("todas_receitas/", todas_receitas, name="todas_receitas"),
     path("excluir_receita/<int:receita_id>/", excluir_receita, name="excluir_receita"),
     path("excluir_despesa/<int:despesa_id>/", excluir_despesa, name="excluir_despesa"),
+    ###### LOGIN ######
+    path('change-password/', ChangePasswordView.as_view(), name='change_password'),
+    path('change-password/done/', PasswordChangeDoneView.as_view(), name='change_password_done'),
+    path('signup/', SignupView.as_view(), name='signup'),
+    path('accounts/profile/', profile, name='profile'),
 ]

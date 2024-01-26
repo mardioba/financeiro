@@ -1,8 +1,11 @@
 # financas/views.py
 from django.utils import translation
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.views import LoginView, PasswordChangeView, PasswordChangeDoneView
 from .models import Despesa, Receita
-from .forms import DespesaForm, ReceitaForm
+from .forms import DespesaForm, ReceitaForm, LoginForm, SignupForm, ChangePasswordForm
 from django.views.generic import View
 from django.db.models import Sum
 from datetime import datetime, date
@@ -337,3 +340,34 @@ def excluir_despesa(request, despesa_id):
         return redirect("todas_despesas")
 
     return render(request, "financas/excluir_despesa.html", {"despesa": despesa})
+
+###### LOGIN E CADASTRO ###################################################
+def profile(request):
+    return render(request, 'financas/home.html')
+
+
+class CustomLoginView(LoginView):
+    form_class = LoginForm
+    template_name = 'login/login.html'
+
+class ChangePasswordView(PasswordChangeView):
+    form_class = ChangePasswordForm
+    template_name = 'login/change_password.html'
+    success_url = reverse_lazy('change_password_done')
+
+class PasswordChangeDoneView(PasswordChangeDoneView):
+    template_name = 'login/change_password_done.html'
+
+
+class SignupView(CreateView):
+    form_class = SignupForm
+    template_name = 'login/signup.html'
+    success_url = reverse_lazy('login')  # Redireciona para a página de login após o cadastro
+
+    def form_valid(self, form):
+        # Adicione lógica adicional aqui, se necessário
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        # Adicione lógica adicional aqui, se necessário
+        return super().form_invalid(form)

@@ -1,0 +1,82 @@
+<!-- myapp/templates/login.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <style>
+      .pai {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+      
+      .filho {
+        width: 50%;
+        align-items: center;
+        text-align: center;
+        font-weight: bold;
+        align-items: center;
+        display: flex;  /* Define a div "filho" como um container flexível */
+        justify-content: center; /* Centraliza os elementos filhos horizontalmente */
+        align-items: center; /* Centraliza os elementos filhos verticalmente */
+      }
+        input[type=text], input[type=password] {
+            width: 150px;
+            box-sizing: border-box;
+            border-radius: 4px;
+          }
+        .button {
+          margin-top: 10px;
+          background-color: #04AA6D; /* Green */
+          border: none;
+          color: white;
+          padding: 10px 22px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          cursor:pointer;
+        }
+        .button:hover span:after {
+          opacity: 1;
+          right: 0;
+        }
+      </style>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <div class="pai">
+        <div class="filho">
+          
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+            <table class="table">
+                <tbody>
+                
+                    <tr>
+                        <td colspan="2" style="padding: 20px;"><img src="{% static 'img/logo.png' %}" alt="" style="width: 40%;height: 40%;"></td>
+                    </tr>
+                  {% for field in form %}
+                    <tr>
+                      <td >{{ field.label }}:</td>
+                      <td>{{ field }}</td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+                <tr><td colspan="2"><button type="submit" class="button"  style="vertical-align:middle">Login</button></td></tr>
+              </table>
+            </form>
+        </div>
+    </div>
+            <!--
+                <p>Não tem uma conta? <a href="{% url 'signup' %}">Registre-se</a></p>
+    <p>Esqueceu sua senha? <a href="{% url 'change_password' %}">Redefinir Senha</a></p>
+-->
+</body>
+</html>
