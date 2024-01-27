@@ -9,5 +9,5 @@ urlpatterns = [
     path("home/", home, name="home"),
     path("favicon.ico", FaviconView.as_view(), name="favicon"),
     ###### LOGIN ######
-    path('', CustomLoginView.as_view(), name='login'),
+    path('', CustomLoginView.as_view()),
 ]

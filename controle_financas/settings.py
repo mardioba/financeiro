@@ -55,7 +55,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = "controle_financas.urls"
 AUTH_USER_MODEL = 'financas.CustomUser'
 
-LOGIN_REDIRECT_URL = 'profile'  # Substitua 'your_redirect_url' pela URL desejada
+LOGIN_REDIRECT_URL = 'home'  # Substitua 'your_redirect_url' pela URL desejada
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
