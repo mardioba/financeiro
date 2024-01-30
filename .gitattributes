@@ -1,0 +1,23 @@
+# Define as configurações para arquivos específicos
+
+# Arquivos de código Python
+*.py linguist-language=Python
+
+# Arquivos de modelo Django
+*.html linguist-language=HTML
+*.css linguist-language=CSS
+
+# Arquivos de configuração
+*.ini linguist-language=INI
+*.conf linguist-language=INI
+
+# Arquivos de banco de dados
+*.db linguist-language=SQL
+
+# Arquivos de migração do Django
+*/migrations/*.py linguist-language=Python
+
+# Ignorar arquivos e diretórios específicos
+*.pyc linguist-generated=true
+__pycache__/* linguist-generated=true
+*.sqlite3 linguist-generated=true
