@@ -1,23 +1,21 @@
-# Define as configurações para arquivos específicos
+# Set default behaviour, in case users don't have core.autocrlf set.
+* text=auto
 
-# Arquivos de código Python
-*.py linguist-language=Python
+# Explicitly declare text files we want to always be normalized and converted
+# to native line endings on checkout.
+*.py text
+*.html text
+*.css text
 
-# Arquivos de modelo Django
-*.html linguist-language=HTML
-*.css linguist-language=CSS
+.gitattributes text
 
-# Arquivos de configuração
-*.ini linguist-language=INI
-*.conf linguist-language=INI
+*.py diff=python
+*.html diff=html
 
-# Arquivos de banco de dados
-*.db linguist-language=SQL
 
-# Arquivos de migração do Django
-*/migrations/*.py linguist-language=Python
+# Declare files that will always have CRLF line endings on checkout.
+#*.sln text eol=crlf
 
-# Ignorar arquivos e diretórios específicos
-*.pyc linguist-generated=true
-__pycache__/* linguist-generated=true
-*.sqlite3 linguist-generated=true
+# Denote all files that are truly binary and should not be modified.
+*.png binary
+*.jpg binary
